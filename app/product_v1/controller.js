@@ -24,7 +24,7 @@ const create = (req, res) => {
 		fs.renameSync(image.path, target);
 	}
 	db
-		.collection('products')
+		.collection('product')
 		.insertOne({ name, price, stock, status, image_url: `http://localhost:5000/public/${image.originalname}` })
 		.then((result) => res.send(result))
 		.catch((err) => res.send(err));
@@ -39,7 +39,7 @@ const update = (req, res) => {
 		fs.renameSync(image.path, target);
 	}
 	db
-		.collection('products')
+		.collection('product')
 		.updateOne(
 			{ _id: ObjectId(id) },
 			{ $set: { name, price, stock, status, image_url: `http://localhost:5000/public/${image.originalname}` } }
@@ -52,7 +52,7 @@ const destroy = (req, res) => {
 	const { id } = req.params;
 
 	db
-		.collection('products')
+		.collection('product')
 		.deleteOne({ _id: ObjectId(id) })
 		.then((result) => res.send(result))
 		.catch((err) => res.send(err));
