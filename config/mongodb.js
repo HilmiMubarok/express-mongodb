@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 
 const url = 'mongodb://latihan:latihan@localhost:27017?authSource=admin';
 
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(url);
 
 (async () => {
 	try {
@@ -13,6 +13,6 @@ const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology:
 	}
 })();
 
-const db = 'learn-mongodb';
+const db = client.db('learn-mongodb');
 
 module.exports = db;
